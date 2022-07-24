@@ -3,12 +3,13 @@
 	public class RobotTests
 	{
 		[Theory]
-		[InlineData('S', 5, 5, "LRM")]
-		[InlineData('N', 345, -43, "MMMRRLLL")]
-		public void CanCreateRobot(char heading, int x, int y, string commands)
+		[InlineData(5, 5, 'S', 5, 5, "LRM")]
+		[InlineData(5, 5, 'N', 345, -43, "MMMRRLLL")]
+		public void CanCreateRobot(int width, int height, char heading, int x, int y, string commands)
 		{
-			var serviceRobot = RobotService.CreateRobot(heading, x, y, commands);
-			var newRobot = new Robot(RobotService.CharToRobotHeading(heading), new Point(x, y), RobotService.StringToCommandQueue(commands));
+			var battleArena = new BattleArena(width, height);
+			var serviceRobot = RobotService.CreateRobot(heading, x, y, commands, battleArena);
+			var newRobot = new Robot(RobotService.CharToRobotHeading(heading), new Point(x, y), RobotService.StringToCommandQueue(commands), battleArena);
 			serviceRobot.Should().BeEquivalentTo(newRobot);
 		}
 
@@ -79,6 +80,18 @@
 		{
 			var battleArena = new BattleArena(arenaWidth, arenaHeight);
 			RobotValidation.yCoordinateValidation(yCoord, battleArena).Should().Be(expected);
+		}
+
+		[Theory]
+		[InlineData(5, 5, 'N', 1, 2, "LMLMLMLMM", true)]
+		[InlineData(5, 5, 'e', 3, 3, "MMRMMRMRRM", true)]
+		[InlineData(500, 500, 'e', 323, 311, "MMMMMMMMMMMMMMMMMMMMM", true)]
+		[InlineData(1, 1, 'e', 1, 0, "RRRRRLLLLLL", true)]
+		public void CheckCommandProcessingValidData(int width, int height, char heading, int x, int y, string commands, bool expected)
+		{
+			var battleArena = new BattleArena(width, height);
+			var robot = RobotService.CreateRobot(heading, x, y, commands, battleArena);
+			robot.ProcessCommands().Should().Be(expected);
 		}
 	}
 }

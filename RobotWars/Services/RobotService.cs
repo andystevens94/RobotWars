@@ -6,12 +6,12 @@ namespace RobotWars.Services
 {
 	public static class RobotService
 	{
-		public static Robot CreateRobot(char headingValue, int x, int y, string commands)
+		public static Robot CreateRobot(char headingValue, int x, int y, string commands, BattleArena battleArena)
 		{
 			Point Point = new Point(x, y);
 			Queue<RobotCommand> commandQueue = StringToCommandQueue(commands);
 			RobotHeading heading = CharToRobotHeading(headingValue);
-			return new Robot(heading, Point, commandQueue);
+			return new Robot(heading, Point, commandQueue, battleArena);
 		}
 
 		public static Queue<RobotCommand> StringToCommandQueue(string commands)

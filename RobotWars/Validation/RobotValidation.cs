@@ -1,9 +1,5 @@
 ﻿using RobotWars.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RobotWars.Structs;
 
 namespace RobotWars.Validation
 {
@@ -48,6 +44,17 @@ namespace RobotWars.Validation
 		{
 			//Add validation against board size
 			if (value < 0 || value > battleArena.Height)
+			{
+				//throw new Exception("Robot out of bounds");
+				return false;
+			}
+			return true;
+		}
+
+		public static bool FullCoordinateValidation(Point point, BattleArena battleArena)
+		{
+			//Add validation against board size
+			if (point.X < 0 || point.Y < 0 || point.Y > battleArena.Height || point.X > battleArena.Width)
 			{
 				//throw new Exception("Robot out of bounds");
 				return false;

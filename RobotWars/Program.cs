@@ -27,3 +27,5 @@ for (int i = 0; i < robotCount; i++)
 	var robot = robotConsoleService.GetRobot();
 	battleArena.Robots.Add(robot);
 }
+
+BattleArenaService.ProcessRobotCommands(battleArena);

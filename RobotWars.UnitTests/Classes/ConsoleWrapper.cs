@@ -1,11 +1,4 @@
-﻿using RobotWars.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RobotWars.UnitTests.Classes
+﻿namespace RobotWars.UnitTests.Classes
 {
 	internal class ConsoleWrapper : IConsole
 	{
@@ -26,6 +19,10 @@ namespace RobotWars.UnitTests.Classes
 		}
 
 		public void WriteLine(string format, object? args0)
+		{
+		}
+
+		public void WriteLine(string format, params object?[]? args0)
 		{
 		}
 	}

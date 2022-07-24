@@ -16,5 +16,10 @@
 		{
 			Console.WriteLine(format, args0);
 		}
+
+		public void WriteLine(string format, params object?[]? arg)
+		{
+			Console.WriteLine(format, arg);
+		}
 	}
 }

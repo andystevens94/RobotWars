@@ -10,9 +10,12 @@ namespace RobotWars.Services.ConsoleServices
 		//Can i change these to fields and add an ignore attribute?
 		private BattleArena _battleArena;
 
+		private IConsole _console;
+
 		public RobotConsoleService(BattleArena battleArena, IConsole console) : base(console)
 		{
 			_battleArena = battleArena;
+			_console = console;
 		}
 
 		[DisplayName("Commands from (L, R ,M)")]
@@ -30,7 +33,7 @@ namespace RobotWars.Services.ConsoleServices
 		public Robot GetRobot()
 		{
 			base.GetInformation();
-			return RobotService.CreateRobot(Heading, xCoordinate, yCoordinate, Commands);
+			return RobotService.CreateRobot(Heading, xCoordinate, yCoordinate, Commands, _battleArena);
 		}
 
 		protected override string ValidationMessage(string propName)
@@ -70,6 +73,16 @@ namespace RobotWars.Services.ConsoleServices
 		private bool yCoordinateValidation(int value)
 		{
 			return RobotValidation.yCoordinateValidation(value, _battleArena);
+		}
+
+		public static void SendFailedCommandsError(int robotIndex)
+		{
+			Console.WriteLine("Robot {0}'s commands took it out of bound of the arena.", robotIndex);
+		}
+
+		public static void SendCompletionMessage(Robot robot, int robotIndex)
+		{
+			Console.WriteLine("Robot {0}'s final heading: {1}, X: {2}, Y: {3}", robotIndex, robot.Heading, robot.Coords.X, robot.Coords.Y);
 		}
 	}
 }

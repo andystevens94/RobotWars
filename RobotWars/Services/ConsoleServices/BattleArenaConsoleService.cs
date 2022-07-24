@@ -20,7 +20,7 @@ namespace RobotWars.Services.ConsoleServices
 		public BattleArena GetBattleArena()
 		{
 			base.GetInformation();
-			return BattleArenaService.CreateBattleArena(Width, Height);
+			return new BattleArena(Width, Height);
 		}
 
 		protected override string ValidationMessage(string propName)

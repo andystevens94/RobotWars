@@ -1,12 +1,25 @@
 ﻿using RobotWars.Models;
+using RobotWars.Services.ConsoleServices;
 
 namespace RobotWars.Services
 {
 	public class BattleArenaService
 	{
-		public static BattleArena CreateBattleArena(int width, int height)
+		public static void ProcessRobotCommands(BattleArena battleArena)
 		{
-			return new BattleArena(width, height, null);
+			for (int i = 0; i < battleArena.Robots.Count; i++)
+			{
+				var robot = battleArena.Robots[i];
+				bool CompletedCommands = robot.ProcessCommands();
+				if (CompletedCommands)
+				{
+					RobotConsoleService.SendCompletionMessage(robot, i);
+				}
+				else
+				{
+					RobotConsoleService.SendFailedCommandsError(i);
+				}
+			}
 		}
 	}
 }

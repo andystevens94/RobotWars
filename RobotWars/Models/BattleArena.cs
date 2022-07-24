@@ -2,15 +2,14 @@
 {
 	public class BattleArena
 	{
-		public BattleArena(int width, int height, IList<Robot> robots = null)
+		public BattleArena(int width, int height)
 		{
 			Width = width;
 			Height = height;
-			Robots = robots ?? new List<Robot>();
 		}
 
-		public int Height { get; set; }
-		public int Width { get; set; }
+		public int Height { get; init; }
+		public int Width { get; init; }
 		public IList<Robot> Robots { get; set; } = new List<Robot>();
 	}
 }
