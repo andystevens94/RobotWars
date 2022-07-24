@@ -1,5 +1,6 @@
 global using Xunit;
 global using FluentAssertions;
+global using RobotWars.Enums;
 global using RobotWars.Services.ConsoleServices;
 global using RobotWars.Models;
 global using RobotWars.Models.Common;
