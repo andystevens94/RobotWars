@@ -2,5 +2,8 @@ global using Xunit;
 global using FluentAssertions;
 global using RobotWars.Services.ConsoleServices;
 global using RobotWars.Models;
+global using RobotWars.Models.Common;
 global using RobotWars.Services;
 global using RobotWars.Structs;
+global using RobotWars.UnitTests.Classes;
+global using RobotWars.Validation;

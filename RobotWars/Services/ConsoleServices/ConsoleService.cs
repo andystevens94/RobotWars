@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using RobotWars.Models.Common;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace RobotWars.Services.ConsoleServices
@@ -11,6 +12,14 @@ namespace RobotWars.Services.ConsoleServices
 		/// <exception cref="NotSupportedException"></exception>
 		/// <exception cref="NotImplementedException"></exception>
 		/// <exception cref="ArgumentException"></exception>
+		///
+		private IConsole _console;
+
+		public ConsoleService(IConsole console)
+		{
+			_console = console;
+		}
+
 		protected void GetInformation()
 		{
 			string? input = null;
@@ -22,8 +31,8 @@ namespace RobotWars.Services.ConsoleServices
 				//Better name?
 				string consoleText = displayNameAtt != null ? displayNameAtt.DisplayName : props[i].Name;
 
-				Console.WriteLine("Please enter {0}:", consoleText);
-				input = Console.ReadLine();
+				_console.WriteLine("Please enter {0}:", consoleText);
+				input = _console.ReadLine();
 				try
 				{
 					var convertedInput = Convert.ChangeType(input, props[i].PropertyType);
@@ -52,14 +61,14 @@ namespace RobotWars.Services.ConsoleServices
 
 					props[i].SetValue(this, convertedInput, null);
 				}
-				catch (Exception e) when (e is NotSupportedException || e is NotImplementedException || e is ArgumentException)
+				catch (Exception e) when (e is NotSupportedException || e is NotImplementedException)
 				{
-					Console.WriteLine(e.Message);
+					_console.WriteLine(e.Message);
 					return;
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine(ValidationMessage(props[i].Name));
+					_console.WriteLine(ValidationMessage(props[i].Name));
 					i--;
 				}
 			}

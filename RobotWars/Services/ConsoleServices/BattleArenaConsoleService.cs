@@ -1,4 +1,6 @@
 ﻿using RobotWars.Models;
+using RobotWars.Models.Common;
+using RobotWars.Validation;
 using System.ComponentModel;
 
 namespace RobotWars.Services.ConsoleServices
@@ -10,6 +12,10 @@ namespace RobotWars.Services.ConsoleServices
 
 		[DisplayName("Width of Battle Arena")]
 		public int Width { get; set; }
+
+		public BattleArenaConsoleService(IConsole console) : base(console)
+		{
+		}
 
 		public BattleArena GetBattleArena()
 		{
@@ -30,23 +36,14 @@ namespace RobotWars.Services.ConsoleServices
 			throw new NotImplementedException();
 		}
 
-		private bool WidthHeightValidation(int value)
-		{
-			if (value > 0)
-			{
-				return true;
-			}
-			return false;
-		}
-
 		private bool HeightValidation(int value)
 		{
-			return WidthHeightValidation(value);
+			return BattleArenaValidation.WidthHeightValidation(value);
 		}
 
 		private bool WidthValidation(int value)
 		{
-			return WidthHeightValidation(value);
+			return BattleArenaValidation.WidthHeightValidation(value);
 		}
 	}
 }
