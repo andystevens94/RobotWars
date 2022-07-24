@@ -1,12 +1,13 @@
-﻿using RobotWars.Structs;
+﻿using RobotWars.Enums;
+using RobotWars.Structs;
 
 namespace RobotWars.Models
 {
 	public interface IRobot
 	{
-		public Queue<char> Commands { get; set; }
+		public Queue<RobotCommand> Commands { get; set; }
 		public Point Coords { get; set; }
-		public char Heading { get; set; }
+		public RobotHeading Heading { get; set; }
 
 		bool ProcessCommands();
 	}

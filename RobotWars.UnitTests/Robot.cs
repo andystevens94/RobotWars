@@ -3,24 +3,12 @@
 	public class RobotTests
 	{
 		[Theory]
-		[InlineData('S', 5, 5, "asdsadasd")]
-		[InlineData('b', 345, -43, "njksjwkmcwe")]
+		[InlineData('S', 5, 5, "LRM")]
+		[InlineData('N', 345, -43, "MMMRRLLL")]
 		public void CanCreateRobot(char heading, int x, int y, string commands)
 		{
-			var robot = RobotService.CreateRobot(heading, x, y, commands);//.Should().NotBeNull();
-			robot.Heading.Should().Be(heading);
-			robot.Coords.X.Should().Be(x);
-			robot.Coords.Y.Should().Be(y);
-			robot.Commands.Should().BeEquivalentTo(new Queue<char>(commands));
-		}
-
-		[Theory]
-		[InlineData('S', 5, 5, "asdsadasd")]
-		[InlineData('b', 345, -43, "njksjwkmcwe")]
-		public void CanCreateRobot2(char heading, int x, int y, string commands)
-		{
 			var serviceRobot = RobotService.CreateRobot(heading, x, y, commands);
-			var newRobot = new Robot(heading, new Point(x, y), new Queue<char>(commands));
+			var newRobot = new Robot(RobotService.CharToRobotHeading(heading), new Point(x, y), RobotService.StringToCommandQueue(commands));
 			serviceRobot.Should().BeEquivalentTo(newRobot);
 		}
 

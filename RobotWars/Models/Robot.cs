@@ -1,23 +1,22 @@
-﻿using RobotWars.Structs;
+﻿using RobotWars.Enums;
+using RobotWars.Structs;
 
 namespace RobotWars.Models
 {
 	public class Robot : IRobot
 	{
-		public Robot(char heading, Point coords, Queue<char> commands)
+		public Robot(RobotHeading heading, Point coords, Queue<RobotCommand> commands)
 		{
 			Heading = heading;
 			Coords = coords;
 			Commands = commands;
 		}
 
-		public Queue<char> Commands { get; set; }
+		public Queue<RobotCommand> Commands { get; set; }
 
-		//Rename? Can i store X/Y as 1 property?
 		public Point Coords { get; set; }
 
-		//Change to an enum?
-		public char Heading { get; set; }
+		public RobotHeading Heading { get; set; }
 
 		//Does this need to return a bool?
 		public bool ProcessCommands()
@@ -29,9 +28,21 @@ namespace RobotWars.Models
 			return true;
 		}
 
-		private void ProcessCommandItem(char command)
+		private void ProcessCommandItem(RobotCommand command)
 		{
 			//Logic for controlling robot
+
+			switch (command)
+			{
+				case RobotCommand.Left:
+					break;
+
+				case RobotCommand.Right:
+					break;
+
+				case RobotCommand.Move:
+					break;
+			}
 		}
 	}
 }
