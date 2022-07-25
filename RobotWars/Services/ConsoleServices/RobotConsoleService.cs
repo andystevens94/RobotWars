@@ -28,6 +28,11 @@ namespace RobotWars.Services.ConsoleServices
 		[DisplayName("Y Coordinate")]
 		public int yCoordinate { get; set; }
 
+		/// <summary>
+		/// Get's all the data for a robot
+		/// </summary>
+		/// <param name="battleArena"></param>
+		/// <returns></returns>
 		public Robot GetRobot(BattleArena battleArena)
 		{
 			this.battleArena = battleArena;

@@ -2,8 +2,6 @@
 using RobotWars.Services;
 using RobotWars.Services.ConsoleServices;
 
-// See https://aka.ms/new-console-template for more information
-
 var console = new ConsoleWrapper();
 var battleArenaConsoleService = new BattleArenaConsoleService(console);
 var battleArena = battleArenaConsoleService.GetBattleArena();

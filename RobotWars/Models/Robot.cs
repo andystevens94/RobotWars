@@ -37,6 +37,12 @@ namespace RobotWars.Models
 			return true;
 		}
 
+		/// <summary>
+		/// Process an individual <see cref="RobotCommand"/>
+		/// </summary>
+		/// <param name="command"></param>
+		/// <returns></returns>
+		/// <exception cref="NotImplementedException"></exception>
 		private bool ProcessCommandItem(RobotCommand command)
 		{
 			switch (command)
@@ -55,6 +61,11 @@ namespace RobotWars.Models
 			return true;
 		}
 
+		/// <summary>
+		/// Move the robot forward one move based on the heading and check it's valid.
+		/// </summary>
+		/// <returns></returns>
+		/// <exception cref="InvalidOperationException"></exception>
 		private bool Move()
 		{
 			Point nextLocation;
@@ -87,6 +98,11 @@ namespace RobotWars.Models
 			return true;
 		}
 
+		/// <summary>
+		/// Turn the robot left or right and update the new <see cref="Heading"/>.
+		/// </summary>
+		/// <param name="direction"></param>
+		/// <exception cref="InvalidOperationException"></exception>
 		private void Turn(RobotCommand direction)
 		{
 			int newHeading;

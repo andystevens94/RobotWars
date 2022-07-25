@@ -31,10 +31,8 @@ namespace RobotWars.Validation
 
 		public static bool xCoordinateValidation(int value, BattleArena battleArena)
 		{
-			//Add validation against board size
 			if (value < 0 || value > battleArena.Width)
 			{
-				//throw new Exception("Robot out of bounds");
 				return false;
 			}
 			return true;
@@ -42,10 +40,8 @@ namespace RobotWars.Validation
 
 		public static bool yCoordinateValidation(int value, BattleArena battleArena)
 		{
-			//Add validation against board size
 			if (value < 0 || value > battleArena.Height)
 			{
-				//throw new Exception("Robot out of bounds");
 				return false;
 			}
 			return true;
@@ -53,10 +49,8 @@ namespace RobotWars.Validation
 
 		public static bool FullCoordinateValidation(Point point, BattleArena battleArena)
 		{
-			//Add validation against board size
 			if (point.X < 0 || point.Y < 0 || point.Y > battleArena.Height || point.X > battleArena.Width)
 			{
-				//throw new Exception("Robot out of bounds");
 				return false;
 			}
 			return true;

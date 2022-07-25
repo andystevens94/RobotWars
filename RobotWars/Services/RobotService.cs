@@ -17,10 +17,10 @@ namespace RobotWars.Services
 		public static Queue<RobotCommand> StringToCommandQueue(string commands)
 		{
 			var commandQueue = new Queue<RobotCommand>();
-			char[] aCommands = commands.ToArray();
-			for (int i = 0; i < aCommands.Length; i++)
+			char[] arrCommands = commands.ToArray();
+			for (int i = 0; i < arrCommands.Length; i++)
 			{
-				RobotCommand command = CharToRobotCommand(aCommands[i]);
+				RobotCommand command = CharToRobotCommand(arrCommands[i]);
 				commandQueue.Enqueue(command);
 			}
 			return commandQueue;
