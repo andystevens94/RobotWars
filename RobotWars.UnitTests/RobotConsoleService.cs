@@ -14,8 +14,8 @@
 			var battleArena = new BattleArena(width, height);
 			IConsole console = GetConsoleWrapper(userInput);
 
-			RobotConsoleService robotConsoleService = new RobotConsoleService(battleArena, console);
-			var robot = robotConsoleService.GetRobot();
+			RobotConsoleService robotConsoleService = new RobotConsoleService(console);
+			var robot = robotConsoleService.GetRobot(battleArena);
 
 			robot.Should().NotBeNull();
 		}
@@ -33,10 +33,10 @@
 			var battleArena = new BattleArena(width, height);
 			IConsole console = GetConsoleWrapper(userInput);
 
-			RobotConsoleService robotConsoleService = new RobotConsoleService(battleArena, console);
+			RobotConsoleService robotConsoleService = new RobotConsoleService(console);
 
 			// Use InvalidOperationException to check the validation as the method will continue until Queue of string in the ConsoleWrapper will run out of items
-			Assert.Throws<System.InvalidOperationException>(() => robotConsoleService.GetRobot());
+			Assert.Throws<System.InvalidOperationException>(() => robotConsoleService.GetRobot(battleArena));
 		}
 
 		private IConsole GetConsoleWrapper(params string[] userInput)

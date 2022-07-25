@@ -23,8 +23,8 @@ while (true)
 
 for (int i = 0; i < robotCount; i++)
 {
-	var robotConsoleService = new RobotConsoleService(battleArena, console);
-	var robot = robotConsoleService.GetRobot();
+	var robotConsoleService = new RobotConsoleService(console);
+	var robot = robotConsoleService.GetRobot(battleArena);
 	battleArena.Robots.Add(robot);
 }
 

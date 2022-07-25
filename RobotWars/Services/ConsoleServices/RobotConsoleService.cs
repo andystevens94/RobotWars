@@ -7,14 +7,12 @@ namespace RobotWars.Services.ConsoleServices
 {
 	public class RobotConsoleService : ConsoleService
 	{
-		//Can i change these to fields and add an ignore attribute?
-		private BattleArena _battleArena;
+		private BattleArena battleArena;
 
 		private IConsole _console;
 
-		public RobotConsoleService(BattleArena battleArena, IConsole console) : base(console)
+		public RobotConsoleService(IConsole console) : base(console)
 		{
-			_battleArena = battleArena;
 			_console = console;
 		}
 
@@ -30,10 +28,11 @@ namespace RobotWars.Services.ConsoleServices
 		[DisplayName("Y Coordinate")]
 		public int yCoordinate { get; set; }
 
-		public Robot GetRobot()
+		public Robot GetRobot(BattleArena battleArena)
 		{
+			this.battleArena = battleArena;
 			base.GetInformation();
-			return RobotService.CreateRobot(Heading, xCoordinate, yCoordinate, Commands, _battleArena);
+			return RobotService.CreateRobot(Heading, xCoordinate, yCoordinate, Commands, battleArena);
 		}
 
 		protected override string ValidationMessage(string propName)
@@ -44,10 +43,10 @@ namespace RobotWars.Services.ConsoleServices
 					return "Must be a single letter N, S, E, W";
 
 				case "xCoordinate":
-					return "Must be an integer between  0 - " + _battleArena.Width;
+					return "Must be an integer between  0 - " + battleArena.Width;
 
 				case "yCoordinate":
-					return "Must be an integer between  0 - " + _battleArena.Height;
+					return "Must be an integer between  0 - " + battleArena.Height;
 
 				case "Commands":
 					return "Must be a string composing of the letters: L, R, M";
@@ -67,22 +66,22 @@ namespace RobotWars.Services.ConsoleServices
 
 		private bool xCoordinateValidation(int value)
 		{
-			return RobotValidation.xCoordinateValidation(value, _battleArena);
+			return RobotValidation.xCoordinateValidation(value, battleArena);
 		}
 
 		private bool yCoordinateValidation(int value)
 		{
-			return RobotValidation.yCoordinateValidation(value, _battleArena);
+			return RobotValidation.yCoordinateValidation(value, battleArena);
 		}
 
-		public static void SendFailedCommandsError(int robotIndex)
+		public void SendFailedCommandsError(int robotIndex)
 		{
-			Console.WriteLine("Robot {0}'s commands took it out of bound of the arena.", robotIndex);
+			_console.WriteLine("Robot {0}'s commands took it out of bound of the arena.", robotIndex);
 		}
 
-		public static void SendCompletionMessage(Robot robot, int robotIndex)
+		public void SendCompletionMessage(Robot robot, int robotIndex)
 		{
-			Console.WriteLine("Robot {0}'s final heading: {1}, X: {2}, Y: {3}", robotIndex, robot.Heading, robot.Coords.X, robot.Coords.Y);
+			_console.WriteLine("Robot {0}'s final heading: {1}, X: {2}, Y: {3}", robotIndex, robot.Heading, robot.Coords.X, robot.Coords.Y);
 		}
 	}
 }

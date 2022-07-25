@@ -1,4 +1,5 @@
 ﻿using RobotWars.Models;
+using RobotWars.Models.Common;
 using RobotWars.Services.ConsoleServices;
 
 namespace RobotWars.Services
@@ -7,17 +8,19 @@ namespace RobotWars.Services
 	{
 		public static void ProcessRobotCommands(BattleArena battleArena)
 		{
+			var console = new ConsoleWrapper();
+			var robotConsoleService = new RobotConsoleService(console);
 			for (int i = 0; i < battleArena.Robots.Count; i++)
 			{
 				var robot = battleArena.Robots[i];
 				bool CompletedCommands = robot.ProcessCommands();
 				if (CompletedCommands)
 				{
-					RobotConsoleService.SendCompletionMessage(robot, i);
+					robotConsoleService.SendCompletionMessage(robot, i);
 				}
 				else
 				{
-					RobotConsoleService.SendFailedCommandsError(i);
+					robotConsoleService.SendFailedCommandsError(i);
 				}
 			}
 		}
