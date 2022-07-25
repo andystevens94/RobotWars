@@ -16,17 +16,17 @@ namespace RobotWars.Services.ConsoleServices
 			_console = console;
 		}
 
-		[DisplayName("Commands from (L, R ,M)")]
-		public string Commands { get; set; }
-
-		[DisplayName("Heading from (N, S, E, W)")]
-		public char Heading { get; set; }
-
 		[DisplayName("X Coordinate")]
 		public int xCoordinate { get; set; }
 
 		[DisplayName("Y Coordinate")]
 		public int yCoordinate { get; set; }
+
+		[DisplayName("Heading from (N, S, E, W)")]
+		public char Heading { get; set; }
+
+		[DisplayName("Commands from (L, R ,M)")]
+		public string Commands { get; set; }
 
 		/// <summary>
 		/// Get's all the data for a robot
@@ -86,7 +86,7 @@ namespace RobotWars.Services.ConsoleServices
 
 		public void SendCompletionMessage(Robot robot, int robotIndex)
 		{
-			_console.WriteLine("Robot {0}'s final heading: {1}, X: {2}, Y: {3}", robotIndex, robot.Heading, robot.Coords.X, robot.Coords.Y);
+			_console.WriteLine("Robot {0}'s position; X: {2}, Y: {3}, Heading: {1}", robotIndex, robot.Heading, robot.Coords.X, robot.Coords.Y);
 		}
 	}
 }
