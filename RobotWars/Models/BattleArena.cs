@@ -1,6 +1,6 @@
 ﻿namespace RobotWars.Models
 {
-	public class BattleArena
+	public class BattleArena : IBattleArena
 	{
 		public BattleArena(int width, int height)
 		{
