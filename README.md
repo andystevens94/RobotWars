@@ -8,5 +8,9 @@ The abstract ConsoleService class implement's a method called `GetInformation()`
 The reason for using reflection and abstraction here was that it allows new models to be added much more easily, say an "Obstruction" was needed in the `BattleArena` then all we would have to do is add the appriopiate models, validation methods and create an `ObstructionConsoleService` which derives from `ConsoleService`. You wouldn't have to touch the orginal code. 
 
 ## Interfaces
+I've used interfaces to provide a contract for `IBattleArena` and `IRobot` as I believe that if you were to expand this game you may want different types of arena and robots but you will always need the core properties and methods of these interfaces which any new object types will have to implement.
 
-## To do?
+
+## Potential improvements
+* Improve the messaging formatting to make it clearer 
+* Add a visual aspect, e.g change to a web app
