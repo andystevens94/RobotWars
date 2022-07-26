@@ -14,3 +14,8 @@ I've used interfaces to provide a contract for `IBattleArena` and `IRobot` as I 
 ## Potential improvements
 * Improve the messaging formatting to make it clearer 
 * Add a visual aspect, e.g change to a web app
+* Add collisons (First to collide with opponent wins?) 
+* Turn based movement
+* Add obstacles/traps
+* Add a health property and turn the app into a game
+
